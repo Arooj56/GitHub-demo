@@ -1,5 +1,9 @@
 name: Custom Deploy to Pages
 description: "Deploy site to gh-pages branch"
+inputs:
+  token:
+    description: "GitHub Token"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -19,5 +23,5 @@ runs:
         git checkout -b gh-pages
         git add .
         git commit -m "Deploy site"
-        git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
+        git push --force https://x-access-token:${{ inputs.token }}@github.com/${{ github.repository }} gh-pages
       shell: bash
