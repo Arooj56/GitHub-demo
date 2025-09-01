@@ -12,9 +12,6 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Custom Checkout
-        uses: ./.github/actions/checkout
-
       - name: Custom Setup Pages
         uses: ./.github/actions/setup-pages
 
