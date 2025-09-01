@@ -9,8 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Custom Checkout
-        uses: ./.github/actions/checkout
+      - name: Checkout code 
+        uses: actions/checkout@v3
 
       - name: Custom Setup Pages
         uses: ./.github/actions/setup-pages
