@@ -1,0 +1,14 @@
+name: Custom Upload Artifact
+description: "Archive site files for GitHub Pages"
+inputs:
+  path:
+    description: "Path to upload"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Create artifact tarball
+      run: |
+        tar -czf artifact.tar.gz ${{ inputs.path }}
+        echo "Artifact created at artifact.tar.gz"
+      shell: bash
