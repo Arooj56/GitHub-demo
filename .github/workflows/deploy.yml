@@ -1,0 +1,24 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Custom Checkout
+        uses: ./.github/actions/checkout
+
+      - name: Custom Setup Pages
+        uses: ./.github/actions/setup-pages
+
+      - name: Custom Upload Artifact
+        uses: ./.github/actions/upload-artifact
+        with:
+          path: .
+
+      - name: Custom Deploy Pages
+        uses: ./.github/actions/deploy-pages
