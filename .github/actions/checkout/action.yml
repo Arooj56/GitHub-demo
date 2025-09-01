@@ -1,0 +1,12 @@
+name: Custom Checkout
+description: "Custom action to checkout repository"
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      run: |
+        git init
+        git remote add origin https://github.com/${{ github.repository }}
+        git fetch origin ${{ github.ref }}
+        git checkout -b main FETCH_HEAD
+      shell: bash
