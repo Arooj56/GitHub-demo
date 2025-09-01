@@ -1,5 +1,5 @@
 name: Custom Upload Artifact
-description: "Archive site files for GitHub Pages"
+description: "Archive site files for deployment"
 inputs:
   path:
     description: "Path to upload"
@@ -10,8 +10,9 @@ runs:
   steps:
     - name: Create artifact tarball safely
       run: |
+        rm -rf staging
         mkdir staging
-        cp -r ${{ inputs.path }}/* staging/
+        rsync -av --exclude='.git' --exclude='.github' --exclude='staging' ${{ inputs.path }}/ staging/
         tar -czf artifact.tar.gz -C staging .
         echo "Artifact created at artifact.tar.gz"
       shell: bash
