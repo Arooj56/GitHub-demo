@@ -4,11 +4,12 @@ inputs:
   path:
     description: "Path to upload"
     required: true
+    default: "."
 runs:
   using: "composite"
   steps:
     - name: Create artifact tarball
       run: |
-        tar -czf artifact.tar.gz ${{ inputs.path }}
+        tar --exclude=.git --exclude=.github -czf artifact.tar.gz ${{ inputs.path }}
         echo "Artifact created at artifact.tar.gz"
       shell: bash
