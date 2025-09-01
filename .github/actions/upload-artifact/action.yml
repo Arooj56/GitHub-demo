@@ -8,8 +8,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Create artifact tarball
+    - name: Create artifact tarball safely
       run: |
-        tar --exclude=.git --exclude=.github -czf artifact.tar.gz ${{ inputs.path }}
+        mkdir staging
+        cp -r ${{ inputs.path }}/* staging/
+        tar -czf artifact.tar.gz -C staging .
         echo "Artifact created at artifact.tar.gz"
       shell: bash
