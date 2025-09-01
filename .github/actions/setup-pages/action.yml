@@ -1,0 +1,10 @@
+name: Custom Setup Pages
+description: "Setup GitHub Pages environment"
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Pages Directory
+      run: |
+        mkdir -p public
+        echo "Pages setup done!"
+      shell: bash
