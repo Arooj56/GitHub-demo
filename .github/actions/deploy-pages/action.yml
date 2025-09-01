@@ -1,0 +1,15 @@
+name: Custom Deploy to Pages
+description: "Deploy site to gh-pages branch"
+runs:
+  using: "composite"
+  steps:
+    - name: Deploy
+      run: |
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+        git checkout --orphan gh-pages
+        cp -r * .
+        git add .
+        git commit -m "Deploy site"
+        git push origin gh-pages --force
+      shell: bash
